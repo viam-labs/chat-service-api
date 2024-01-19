@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package viamlabs.service.chat.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "./chat-service-api";
+
+service ChatService {
+  rpc Chat(ChatRequest) returns (ChatResponse) {
+    option (google.api.http) = {
+      post: "/viamlabs/api/v1/service/chat/{name}/chat"
+    };
+  }
+}
+
+message ChatRequest {
+  string name = 1;
+  string message = 2;
+}
+
+message ChatResponse {
+  string answer = 1;
+}

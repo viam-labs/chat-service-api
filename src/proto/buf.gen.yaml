@@ -1,0 +1,23 @@
+# note - after buf generate change this line in chat_grpc.py:
+# from . import chat_pb2
+version: v1
+plugins:
+  - name: python
+    out: chat_service_api/grpc
+  - name: grpclib_python
+    out: chat_service_api/grpc
+  - name: mypy
+    out: chat_service_api/grpc
+  - name: go
+    out: chat_go/grpc
+    opt:
+      - paths=source_relative
+  - name: go-grpc
+    out: chat_go/grpc
+    opt:
+      - paths=source_relative
+  - name: grpc-gateway
+    out: chat_go/grpc
+    opt:
+      - paths=source_relative
+      - generate_unbound_methods=true

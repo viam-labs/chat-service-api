@@ -1,0 +1,33 @@
+[project]
+name = "chat-service-api"
+version = "0.0.1"
+description = "Viam modular service API that provides chat response capabilities"
+authors = [
+    {name = "Nick Hehr", email = "nick.hehr@viam.com"},
+]
+dependencies = [
+    "viam-sdk>=0.13.2",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.dev-dependencies]
+dev = [
+  "mypy-protobuf>=3.5.0",
+]
+
+[tool.pdm.resolution.overrides]
+viam-sdk = "0.13.2"
+grpclib = "0.4.7"
+
+[tool.pyprojectx]
+main = ["pdm", "px-utils"]
+
+[tool.pdm]
+distribution = true
+
