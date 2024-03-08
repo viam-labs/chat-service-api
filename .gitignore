@@ -161,3 +161,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .pyprojectx/
+
+node_modules/
+src/chat_service_api/grpc/google
+src/chat_go/grpc/google
