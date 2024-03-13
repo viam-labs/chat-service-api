@@ -5,7 +5,6 @@ go 1.21.6
 require (
 	github.com/edaniels/golog v0.0.0-20230215213219-28954395e8d0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.0
-	go.opentelemetry.io/otel/sdk v1.22.0
 	go.viam.com/rdk v0.18.0
 	go.viam.com/utils v0.1.58
 	google.golang.org/genproto/googleapis/api v0.0.0-20240102182953-50ed04b92917

@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/edaniels/golog"
-	"go.opentelemetry.io/otel/sdk/resource"
 	"go.viam.com/utils/rpc"
 
 	pb "github.com/viam-labs/chat-service-api/src/chat_go/grpc"
