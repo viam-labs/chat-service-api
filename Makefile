@@ -4,5 +4,5 @@ generate: install
 	sed -i "" -e "s/import\ chat_pb2/from\ \.\ import\ chat_pb2/g" ./src/chat_service_api/grpc/chat_grpc.py
 
 install:
-	pip install .
+	pip install -r requirements.lock
 	npm ci

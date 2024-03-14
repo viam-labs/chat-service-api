@@ -69,9 +69,14 @@ await chat.chat("What is the meaning of life?");
 
 ## Development
 
+This project is managed by [`rye`](https://rye-up.com/). To initialize the development environment, follow the [installation instructions](https://rye-up.com/guide/installation/) and run:
+
+```console
+rye sync
+```
 
 To rebuild the gRPC bindings run:
 
-```
+```console
 make generate
 ```
