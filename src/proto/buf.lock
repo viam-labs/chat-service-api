@@ -2,7 +2,22 @@
 version: v1
 deps:
   - remote: buf.build
+    owner: erdaniels
+    repository: gostream
+    commit: ae00de34a29e41ed96578beb4a84ae9e
+    digest: shake256:98cdbd37fd64db3f5b2e463863b1231af2653f155931de0655687758a0b312f8d60314060cd3caa8232f37e69fbb38de93057e6905aa29ee6aed4aca8b575421
+  - remote: buf.build
     owner: googleapis
     repository: googleapis
-    commit: 62f35d8aed1149c291d606d958a7ce32
-    digest: shake256:c5f5c2401cf70b7c9719834954f31000a978397fdfebda861419bb4ab90fa8efae92710fddab0820533908a1e25ed692a8e119432b7b260c895087a4975b32f3
+    commit: 7a6bc1e3207144b38e9066861e1de0ff
+    digest: shake256:d646836485c34192401253703c4e7ce899c826fceec060bf4b2a62c4749bd9976dc960833e134a1f814725e1ffd60b1bb3cf0335a7e99ef0e8cec34b070ffb66
+  - remote: buf.build
+    owner: viamrobotics
+    repository: api
+    commit: a8f357e9f51d487db3734879ac7e1455
+    digest: shake256:18015ae6ca8363ccf9d2030e860742cf93cf4bf8be37080334c097a1e0e970ad27eea8e95d9b421d66f9f9f7285d88d80b9320d777383fa37a3e707a952b1c97
+  - remote: buf.build
+    owner: viamrobotics
+    repository: goutils
+    commit: 3d6f33d2994a40328ea09b75b7993425
+    digest: shake256:997d52c52be0e642f3ca1d242383900378a6271817e2540a4355943c0211cf28d7c936df64cebfc64f905cffc514882ccbdadc5a7d2618c7946b3cc5a0f60e2b
