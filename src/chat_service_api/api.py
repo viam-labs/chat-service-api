@@ -20,13 +20,12 @@ To see how this custom modular service is registered, see the __init__.py file.
 """
 
 import abc
-from typing import Final
 
 from grpclib.client import Channel
 from grpclib.server import Stream
 
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.types import RESOURCE_TYPE_SERVICE, Subtype
+from viam.resource.types import RESOURCE_TYPE_SERVICE, API
 from viam.services.service_base import ServiceBase
 
 from .grpc.chat_grpc import ChatServiceBase, ChatServiceStub
@@ -36,11 +35,11 @@ from .grpc.chat_pb2 import ChatRequest, ChatResponse
 
 class Chat(ServiceBase):
 
-    SUBTYPE: Final = Subtype("viam-labs", RESOURCE_TYPE_SERVICE, "chat")
+    API = API("viam-labs", RESOURCE_TYPE_SERVICE, "chat")
 
     @abc.abstractmethod
-    async def chat(self, message: str) -> str:
-        ...
+    async def chat(self, message: str) -> str: ...
+
 
 class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
 
@@ -53,6 +52,7 @@ class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
         service = self.get_resource(name)
         resp = await service.chat(request.message)
         await stream.send_message(ChatResponse(answer=resp))
+
 
 class ChatClient(Chat):
 

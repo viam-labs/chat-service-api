@@ -6,4 +6,8 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .api import ChatClient, ChatRPCService, Chat
 
-Registry.register_subtype(ResourceRegistration(Chat, ChatRPCService, lambda name, channel: ChatClient(name, channel)))
+Registry.register_api(
+    ResourceRegistration(
+        Chat, ChatRPCService, lambda name, channel: ChatClient(name, channel)
+    )
+)

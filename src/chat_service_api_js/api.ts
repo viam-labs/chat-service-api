@@ -1,7 +1,8 @@
-import { Struct } from 'google-protobuf/google/protobuf/struct_pb';
-import pb from './grpc/chat_pb';
-import { ChatServiceClient } from './grpc/chat_pb_service';
+import { Struct, JsonValue } from '@bufbuild/protobuf';
+import * as pb from './grpc/chat_pb';
+import { ChatService } from './grpc/chat_connect';
 import * as Viam from '@viamrobotics/sdk';
+import { Client } from '@connectrpc/connect';
 import type { Chat } from './interface';
 
 /**
@@ -10,35 +11,30 @@ import type { Chat } from './interface';
  * @group Clients
  */
 export class ChatClient implements Chat {
-  private client: ChatServiceClient;
+  private client: Client<typeof ChatService>;
   private readonly name: string;
   private readonly options: Viam.Options;
 
   constructor(client: Viam.RobotClient, name: string, options: Viam.Options = {}) {
-    this.client = client.createServiceClient(ChatServiceClient);
+    this.client = client.createServiceClient(ChatService);
     this.name = name;
     this.options = options;
   }
 
-  private get service() {
-    return this.client;
-  }
-
   async chat(message: string) {
-    const { service } = this;
-
-    const request = new pb.ChatRequest();
-    request.setName(this.name);
-    request.setMessage(message);
+    const request = new pb.ChatRequest({
+      name: this.name,
+      message,
+    });
 
     this.options.requestLogger?.(request);
 
-    const response = await Viam.promisify<
-      pb.ChatRequest,
-      pb.ChatResponse
-    >(service.chat.bind(service), request);
+    const response = await this.client.chat(request);
+    return response.answer;
+  }
 
-    return response.getAnswer();
+  async doCommand(_command: Struct): Promise<JsonValue> {
+    return {}
   }
 
 }

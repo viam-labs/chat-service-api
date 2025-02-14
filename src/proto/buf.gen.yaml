@@ -21,16 +21,7 @@ plugins:
     opt:
       - paths=source_relative
       - generate_unbound_methods=true
-  - plugin: js
+  - plugin: buf.build/connectrpc/es:v1.5.0
     out: chat_service_api_js/grpc
-    opt:
-      - import_style=commonjs
-  - plugin: grpc-web
+  - plugin: buf.build/bufbuild/es:v1.10.0
     out: chat_service_api_js/grpc
-    opt:
-      - import_style=commonjs
-      - mode=grpcwebtext
-  - plugin: ts
-    out: chat_service_api_js/grpc
-    opt:
-      - service=grpc-web
