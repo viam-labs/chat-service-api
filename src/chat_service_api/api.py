@@ -51,7 +51,7 @@ class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
         assert request is not None
         name = request.name
         service = self.get_resource(name)
-        resp = await service.chat(request.message, request.extra.as_dict())
+        resp = await service.chat(request.message, request.extra)
         await stream.send_message(ChatResponse(answer=resp))
 
 
