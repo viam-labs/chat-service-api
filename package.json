@@ -1,6 +1,6 @@
 {
   "name": "chat-service-api",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "src/chat_service_api_js/main.ts",
   "description": "Viam Labs chat service API",
   "directories": {

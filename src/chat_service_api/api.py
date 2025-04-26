@@ -54,7 +54,7 @@ class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
         
         # Check if extra is set in the request
         if hasattr(request, 'extra') and request.extra is not None:
-            resp = await service.chat(request.message, request.extra)
+            resp = await service.chat(request.message, extra=request.extra)
         else:
             resp = await service.chat(request.message)
             
