@@ -54,7 +54,9 @@ class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
         
         # Check if extra is set in the request
         if hasattr(request, 'extra') and request.extra is not None:
-            resp = await service.chat(request.message, extra=request.extra)
+            # Convert the extra to a dict to ensure it has a get method
+            extra_dict = dict(request.extra) if hasattr(request.extra, "__iter__") else {}
+            resp = await service.chat(request.message, extra=extra_dict)
         else:
             resp = await service.chat(request.message)
             
