@@ -1,4 +1,4 @@
-// Copyright 2024 Google LLC
+// Copyright 2025 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -126,6 +126,12 @@ export const QuotaFailure_Violation = /*@__PURE__*/ proto3.makeMessageType(
   () => [
     { no: 1, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "api_service", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "quota_metric", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "quota_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "quota_dimensions", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 7, name: "quota_value", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: "future_quota_value", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
   ],
   {localName: "QuotaFailure_Violation"},
 );

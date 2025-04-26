@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
+import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage, Struct } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,11 @@ export declare class ChatRequest extends Message<ChatRequest> {
    * @generated from field: string message = 2;
    */
   message: string;
+
+  /**
+   * @generated from field: google.protobuf.Struct extra = 99;
+   */
+  extra?: Struct;
 
   constructor(data?: PartialMessage<ChatRequest>);
 

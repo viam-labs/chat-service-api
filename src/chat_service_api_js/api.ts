@@ -21,10 +21,11 @@ export class ChatClient implements Chat {
     this.options = options;
   }
 
-  async chat(message: string) {
+  async chat(message: string, extra = {}) {
     const request = new pb.ChatRequest({
       name: this.name,
       message,
+      extra: Struct.fromJson(extra),
     });
 
     this.options.requestLogger?.(request);

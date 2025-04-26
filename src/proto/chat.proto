@@ -3,6 +3,7 @@ syntax = "proto3";
 package viamlabs.service.chat.v1;
 
 import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
 
 option go_package = "./chat-service-api";
 
@@ -17,6 +18,7 @@ service ChatService {
 message ChatRequest {
   string name = 1;
   string message = 2;
+  google.protobuf.Struct extra = 99;
 }
 
 message ChatResponse {

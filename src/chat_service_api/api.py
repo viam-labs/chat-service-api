@@ -20,6 +20,7 @@ To see how this custom modular service is registered, see the __init__.py file.
 """
 
 import abc
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 from grpclib.server import Stream
@@ -61,7 +62,7 @@ class ChatClient(Chat):
         self.client = ChatServiceStub(channel)
         super().__init__(name)
 
-    async def chat(self, message: str = "") -> str:
-        request = ChatRequest(name=self.name, message=message)
+    async def chat(self, message: str = "", *, extra: Optional[Mapping[str, Any]] = None) -> str:
+        request = ChatRequest(name=self.name, message=message, extra=extra)
         response: ChatResponse = await self.client.Chat(request)
         return response.answer

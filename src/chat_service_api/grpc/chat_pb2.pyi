@@ -6,6 +6,7 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
@@ -16,15 +17,20 @@ class ChatRequest(google.protobuf.message.Message):
 
     NAME_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     message: builtins.str
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct: ...
     def __init__(
         self,
         *,
         name: builtins.str = ...,
         message: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["message", b"message", "name", b"name"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["extra", b"extra"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["extra", b"extra", "message", b"message", "name", b"name"]) -> None: ...
 
 global___ChatRequest = ChatRequest
 

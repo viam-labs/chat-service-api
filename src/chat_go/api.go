@@ -5,6 +5,7 @@ import (
 
 	"github.com/edaniels/golog"
 	"go.viam.com/utils/rpc"
+	"google.golang.org/protobuf/types/known/structpb"
 
 	pb "github.com/viam-labs/chat-service-api/src/chat_go/grpc"
 	"go.viam.com/rdk/resource"
@@ -40,7 +41,7 @@ func init() {
 
 type Chat interface {
 	resource.Resource
-	Chat(ctx context.Context, message string) (string, error)
+	Chat(ctx context.Context, message string, extra map[string]interface{}) (string, error)
 }
 
 type serviceServer struct {
@@ -57,7 +58,7 @@ func (s *serviceServer) Chat(ctx context.Context, req *pb.ChatRequest) (*pb.Chat
 	if err != nil {
 		return nil, err
 	}
-	answer, err := g.Chat(ctx, req.Message)
+	answer, err := g.Chat(ctx, req.Message, req.Extra.AsMap())
 	if err != nil {
 		return nil, err
 	}
@@ -96,13 +97,19 @@ func clientFromSvcClient(sc *serviceClient, name string) Chat {
 	return &client{sc, name}
 }
 
-func (c *client) Chat(ctx context.Context, message string) (string, error) {
+func (c *client) Chat(ctx context.Context, message string, extra map[string]interface{}) (string, error) {
+	extraStruct, err := structpb.NewStruct(extra)
+	if err != nil {
+		return "", err
+	}
+
 	answer, err := c.client.Chat(ctx, &pb.ChatRequest{
 		Name:    c.name,
 		Message: message,
+		Extra:   extraStruct,
 	})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
-	return answer
+	return answer.Answer, nil
 }

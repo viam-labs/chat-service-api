@@ -10,6 +10,7 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 
 import google.api.annotations_pb2
+import google.protobuf.struct_pb2
 from . import chat_pb2
 
 
