@@ -39,7 +39,7 @@ class Chat(ServiceBase):
     API = API("viam-labs", RESOURCE_TYPE_SERVICE, "chat")
 
     @abc.abstractmethod
-    async def chat(self, message: str) -> str: ...
+    async def chat(self, message: str, extra: Optional[Mapping[str, Any]] = None) -> str: ...
 
 
 class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
@@ -51,7 +51,7 @@ class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
         assert request is not None
         name = request.name
         service = self.get_resource(name)
-        resp = await service.chat(request.message)
+        resp = await service.chat(request.message, request.extra.as_dict())
         await stream.send_message(ChatResponse(answer=resp))
 
 
