@@ -51,7 +51,13 @@ class ChatRPCService(ChatServiceBase, ResourceRPCServiceBase):
         assert request is not None
         name = request.name
         service = self.get_resource(name)
-        resp = await service.chat(request.message, request.extra)
+        
+        # Check if extra is set in the request
+        if hasattr(request, 'extra') and request.extra is not None:
+            resp = await service.chat(request.message, request.extra)
+        else:
+            resp = await service.chat(request.message)
+            
         await stream.send_message(ChatResponse(answer=resp))
 
 
@@ -62,7 +68,7 @@ class ChatClient(Chat):
         self.client = ChatServiceStub(channel)
         super().__init__(name)
 
-    async def chat(self, message: str = "", *, extra: Optional[Mapping[str, Any]] = None) -> str:
+    async def chat(self, message: str = "", extra: Optional[Mapping[str, Any]] = None) -> str:
         request = ChatRequest(name=self.name, message=message, extra=extra)
         response: ChatResponse = await self.client.Chat(request)
         return response.answer
