@@ -1,6 +1,6 @@
 [project]
 name = "chat-service-api"
-version = "0.1.11"
+version = "0.2.0"
 description = "Viam modular service API that provides chat response capabilities"
 authors = [
     {name = "Nick Hehr", email = "nick.hehr@viam.com"},
@@ -8,7 +8,7 @@ authors = [
 dependencies = [
     "viam-sdk>=0.40.0",
 ]
-requires-python = "<3.14"
+requires-python = ">=3.10"
 readme = "README.md"
 license = {text = "Apache-2.0"}
 
